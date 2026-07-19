@@ -26,10 +26,20 @@ jobs:
       with:
         gradle-version: '8.2.2'
 
+    - name: Generate Gradle Wrapper
+      run: |
+        cd android-project
+        gradle wrapper --gradle-version 8.2.2
+
+    - name: Grant execute permission for gradlew
+      run: |
+        cd android-project
+        chmod +x gradlew
+
     - name: Build Debug APK
       run: |
         cd android-project
-        gradle assembleDebug
+        ./gradlew assembleDebug --no-daemon --stacktrace
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
