@@ -55,10 +55,10 @@ public class MainActivity extends Activity {
         // Ładowanie oficjalnej strony Apple Music Web Player
         mWebView.loadUrl("https://music.apple.com");
 
-        // 🎮 Dodaj wirtualny kursor
-        FrameLayout container = findViewById(R.id.container);
+        // 🎮 Dodaj wirtualny kursor do głównego kontenera
+        FrameLayout rootView = findViewById(R.id.container);
         mCursorView = new VirtualCursorView(this);
-        container.addView(mCursorView);
+        rootView.addView(mCursorView);
     }
 
     // Obsługa fizycznego D-Pad i przycisków pilocie Android TV
