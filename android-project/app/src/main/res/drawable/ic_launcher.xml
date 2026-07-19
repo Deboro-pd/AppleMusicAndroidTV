@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <!-- Tło: Zaokrąglony kwadrat w kolorze głębokiej czerwieni Apple Music -->
+    <path
+        android:fillColor="#FF2D55"
+        android:pathData="M 128,48 C 83.8,48 48,83.8 48,128 L 48,384 C 48,428.2 83.8,464 128,464 L 384,464 C 428.2,464 464,428.2 464,384 L 464,128 C 464,83.8 428.2,48 384,48 Z" />
+    <!-- Ikona nuty (biała) w środku -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 340,140 L 220,165 L 220,330 C 205,320 185,320 170,330 C 150,342 140,365 148,385 C 156,405 178,415 198,405 C 215,395 225,375 225,355 L 225,230 L 325,210 L 325,300 C 310,290 290,290 275,300 C 255,312 245,335 253,355 C 261,375 283,385 303,375 C 320,365 330,345 330,325 L 330,150 C 330,144 340,140 340,140 Z" />
+</vector>
