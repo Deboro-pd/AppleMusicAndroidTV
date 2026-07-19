@@ -108,7 +108,7 @@ public class VirtualCursorView extends View {
                 
             case KeyEvent.KEYCODE_DPAD_CENTER:
             case KeyEvent.KEYCODE_ENTER:
-                performClick();
+                clickAtCursor();
                 return true;
                 
             case KeyEvent.KEYCODE_MENU:
@@ -146,7 +146,7 @@ public class VirtualCursorView extends View {
         invalidate();
     }
 
-    public void performClick() {
+    private void clickAtCursor() {
         Log.d(TAG, "🖱️ CLICK at (" + cursorX + ", " + cursorY + ")");
         
         if (mWebView != null) {
