@@ -1,0 +1,33 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.applemusicwrapper'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.applemusicwrapper"
+        minSdk 21 // Zapewnia zgodność ze starszymi telewizorami Android TV (Android 5.0+)
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // Nie potrzebujemy ciężkich bibliotek UI, ponieważ to czysty Web-Wrapper oparty na WebView!
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}

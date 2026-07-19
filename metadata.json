@@ -1,0 +1,6 @@
+{
+  "name": "Apple Music TV Wrapper",
+  "description": "A gorgeous, TV-optimized Apple Music web wrapper with full remote and keyboard navigation support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
