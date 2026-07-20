@@ -23,11 +23,12 @@ public class VirtualCursorView extends View {
     private int cursorSpeed = 20;
     private boolean isVisible = true;
     private WebView mWebView;
+    private MainActivity mActivity;
 
-    // ✅ Poprawne konstruktory
     public VirtualCursorView(Context context, WebView webView) {
         super(context);
         this.mWebView = webView;
+        this.mActivity = (MainActivity) context;
         init();
     }
 
@@ -45,24 +46,20 @@ public class VirtualCursorView extends View {
         setFocusable(true);
         setFocusableInTouchMode(true);
 
-        // Pomarańczowy kursor
         cursorPaint = new Paint();
         cursorPaint.setColor(Color.argb(255, 255, 165, 0));
         cursorPaint.setAntiAlias(true);
 
-        // Zewnętrzne kółko
         cursorOuterPaint = new Paint();
         cursorOuterPaint.setColor(Color.argb(200, 255, 165, 0));
         cursorOuterPaint.setAntiAlias(true);
         cursorOuterPaint.setStyle(Paint.Style.STROKE);
         cursorOuterPaint.setStrokeWidth(4);
 
-        // Krzyżyk
         crossPaint = new Paint();
         crossPaint.setColor(Color.WHITE);
         crossPaint.setStrokeWidth(2);
 
-        // Startowa pozycja - środek ekranu
         cursorX = 960;
         cursorY = 540;
         
@@ -75,7 +72,7 @@ public class VirtualCursorView extends View {
         
         if (!isVisible) return;
 
-        // Rysuj kursor
+        // Rysuj kursor - pomarańczowy
         canvas.drawCircle(cursorX, cursorY, cursorRadius + 6, cursorOuterPaint);
         canvas.drawCircle(cursorX, cursorY, cursorRadius, cursorPaint);
         
@@ -84,10 +81,15 @@ public class VirtualCursorView extends View {
         canvas.drawLine(cursorX, cursorY - 12, cursorX, cursorY + 12, crossPaint);
     }
 
-    // ⭐ GŁÓWNA OBSŁUGA D-PAD
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Log.d(TAG, "🎮 D-Pad Key: " + KeyEvent.keyCodeToString(keyCode));
+        
+        // Jeśli klawiatura jest aktywna - nie obsługuj D-Pad dla kursora
+        if (mActivity != null && mActivity.isKeyboardActive()) {
+            Log.d(TAG, "⌨️ Keyboard active - D-Pad controls Gboard");
+            return false;
+        }
         
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_UP:
@@ -177,8 +179,11 @@ public class VirtualCursorView extends View {
             upEvent.recycle();
             
             Log.d(TAG, "✅ Click sent to WebView");
-        } else {
-            Log.d(TAG, "⚠️ WebView is null!");
+            
+            // Pokaż Gboard jeśli kliknąłeś na input field
+            if (mActivity != null) {
+                mActivity.showKeyboard();
+            }
         }
     }
 
